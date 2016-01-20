@@ -8,6 +8,7 @@
 
 import UIKit
 import AFNetworking
+import MBProgressHUD
 
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -24,6 +25,25 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         // Do any additional setup after loading the view.
         
+        loadDataFromNetwork()
+        
+        // Initialize a UIRefreshControl
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "refreshControlAction:", forControlEvents: UIControlEvents.ValueChanged)
+        TableView.insertSubview(refreshControl, atIndex: 0)
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func loadDataFromNetwork() {
+        
+        // Display HUD right before next request is made
+        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        
+        // ...
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
         let url = NSURL(string:"https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
         let request = NSURLRequest(URL: url!)
@@ -42,25 +62,25 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                             
                             self.movies = responseDictionary["results"] as! [NSDictionary]
                             self.TableView.reloadData()
+                            // Hide HUD once network request comes back (must be done on main UI thread)
+                            MBProgressHUD.hideHUDForView(self.view, animated: true)
                     }
                 }
         });
         task.resume()
+    }
+    
+    func refreshControlAction(refreshControl: UIRefreshControl) {
         
-        // -------------------------------------------
-        // Pull up to refresh table ***IN PROGRESS****
-        refreshControl = UIRefreshControl()
+        // Make network request to fetch latest data
+        loadDataFromNetwork()
         
+        // Do the following when the network request comes back successfully:
+        // Update tableView data source
         refreshControl.backgroundColor = UIColor.redColor()
         refreshControl.tintColor = UIColor.cyanColor()
-        
-        TableView.addSubview(refreshControl)
-        
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        self.TableView.reloadData()
+        refreshControl.endRefreshing()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
