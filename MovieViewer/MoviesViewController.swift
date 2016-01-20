@@ -14,11 +14,14 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var TableView: UITableView!
     
     var movies: [NSDictionary]?
+    var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         TableView.dataSource = self
         TableView.delegate = self
+        
         // Do any additional setup after loading the view.
         
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
@@ -43,6 +46,16 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                 }
         });
         task.resume()
+        
+        // -------------------------------------------
+        // Pull up to refresh table ***IN PROGRESS****
+        refreshControl = UIRefreshControl()
+        
+        refreshControl.backgroundColor = UIColor.redColor()
+        refreshControl.tintColor = UIColor.cyanColor()
+        
+        TableView.addSubview(refreshControl)
+        
     }
 
     override func didReceiveMemoryWarning() {
