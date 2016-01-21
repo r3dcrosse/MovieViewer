@@ -13,9 +13,15 @@ import MBProgressHUD
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var TableView: UITableView!
+    @IBOutlet weak var networkErrorBackground: UIView!
+    @IBOutlet weak var networkErrorTextLabel: UILabel!
     
     var movies: [NSDictionary]?
     var refreshControl: UIRefreshControl!
+    
+    override func viewWillAppear(animated: Bool) {
+        checkNetwork()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +45,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func loadDataFromNetwork() {
+        
+        checkNetwork()
         
         // Display HUD right before next request is made
         MBProgressHUD.showHUDAddedTo(self.view, animated: true)
@@ -111,6 +119,18 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         print("row \(indexPath.row)")
         return cell
     }
+    
+    // Check if connected to network ----------------------
+    func checkNetwork() {
+        if Reachability.isConnectedToNetwork() {
+            networkErrorBackground.hidden = true
+            networkErrorTextLabel.hidden = true
+        } else {
+            networkErrorBackground.hidden = false
+            networkErrorTextLabel.hidden = false
+        }
+    }
+    // ----------------------------------------------------
     
 
     /*
