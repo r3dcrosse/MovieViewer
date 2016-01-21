@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		81332AF91C519A1900AAAE48 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81332AF81C519A1900AAAE48 /* Reachability.swift */; };
 		81623CC41C4D60B100E646DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81623CC31C4D60B100E646DE /* AppDelegate.swift */; };
 		81623CC91C4D60B100E646DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81623CC71C4D60B100E646DE /* Main.storyboard */; };
 		81623CCB1C4D60B100E646DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81623CCA1C4D60B100E646DE /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 /* Begin PBXFileReference section */
 		5A5139EF6FF72D7687F5FD04 /* Pods-MovieViewer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieViewer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MovieViewer/Pods-MovieViewer.debug.xcconfig"; sourceTree = "<group>"; };
 		68490B9985BE9F1D9CE4EF21 /* Pods_MovieViewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieViewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		81332AF81C519A1900AAAE48 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		81623CC01C4D60B100E646DE /* MovieViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81623CC31C4D60B100E646DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81623CC81C4D60B100E646DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				81623CCA1C4D60B100E646DE /* Assets.xcassets */,
 				81623CCC1C4D60B100E646DE /* LaunchScreen.storyboard */,
 				81623CCF1C4D60B100E646DE /* Info.plist */,
+				81332AF81C519A1900AAAE48 /* Reachability.swift */,
 			);
 			path = MovieViewer;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 			files = (
 				81623CC41C4D60B100E646DE /* AppDelegate.swift in Sources */,
 				81623CD61C4D61A200E646DE /* MoviesViewController.swift in Sources */,
+				81332AF91C519A1900AAAE48 /* Reachability.swift in Sources */,
 				81623CD91C4D6E2D00E646DE /* MovieCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
