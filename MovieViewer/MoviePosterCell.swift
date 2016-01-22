@@ -1,5 +1,5 @@
 //
-//  ColorCell.swift
+//  MoviePosterCell.swift
 //  MovieViewer
 //
 //  Created by David Wayman on 1/21/16.
@@ -8,8 +8,8 @@
 
 import UIKit
 
-class ColorCell: UICollectionViewCell {
+class MoviePosterCell: UICollectionViewCell {
     
-    @IBOutlet weak var colorLabel: UILabel!
+    @IBOutlet weak var posterView: UIImageView!
     
 }
