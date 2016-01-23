@@ -16,8 +16,14 @@ class MovieCellViewController: UIViewController {
     @IBOutlet weak var overviewLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     
+    var timesAppeared: Int = 0
+    
     override func viewWillAppear(animated: Bool) {
         setMovieInfo()
+        
+        if timesAppeared <= 0 {
+            blurBackground()
+        }
     }
 
     override func viewDidLoad() {
@@ -28,6 +34,9 @@ class MovieCellViewController: UIViewController {
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("imageTapped:"))
         posterView.userInteractionEnabled = true
         posterView.addGestureRecognizer(tapGestureRecognizer)
+        
+        titleLabel.text = (userDefaults.objectForKey("cell_movie_title") as! String)
+        overviewLabel.text = (userDefaults.objectForKey("cell_movie_overview") as! String)
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,12 +54,22 @@ class MovieCellViewController: UIViewController {
         let URL = userDefaults.URLForKey("cell_poster_URL")
         
         posterView.setImageWithURL(URL!)
-        titleLabel.text = (userDefaults.objectForKey("cell_movie_title") as! String)
-        overviewLabel.text = (userDefaults.objectForKey("cell_movie_overview") as! String)
+        
+        
     }
     
     func imageTapped(img: AnyObject) {
         performSegueWithIdentifier("posterFullScreen", sender: self)
+    }
+    
+    func blurBackground() {
+        // blur poster image for nice background
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = posterView.bounds
+        posterView.addSubview(blurEffectView)
+        
+        timesAppeared++
     }
     
 
