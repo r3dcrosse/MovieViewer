@@ -10,12 +10,18 @@ import UIKit
 
 class MovieCellViewController: UIViewController {
     
+    let userDefaults = NSUserDefaults.standardUserDefaults()
+    
     @IBOutlet weak var posterView: UIImageView!
+    @IBOutlet weak var overviewLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        setMovieInfo()
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,6 +32,16 @@ class MovieCellViewController: UIViewController {
     func setPosterImage(imageURL: NSURL) {
         
         posterView.setImageWithURL(imageURL)
+    }
+    
+    func setMovieInfo() {
+        
+        let URL = userDefaults.URLForKey("cell_poster_URL")
+        
+        titleLabel.text = (userDefaults.objectForKey("cell_movie_title") as! String)
+        overviewLabel.text = (userDefaults.objectForKey("cell_movie_overview") as! String)
+        posterView.setImageWithURL(URL!)
+        
     }
     
 
