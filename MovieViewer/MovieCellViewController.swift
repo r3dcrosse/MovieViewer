@@ -15,13 +15,15 @@ class MovieCellViewController: UIViewController {
     @IBOutlet weak var posterView: UIImageView!
     @IBOutlet weak var overviewLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
+    
+    override func viewWillAppear(animated: Bool) {
+        setMovieInfo()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
-        setMovieInfo()
         
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("imageTapped:"))
         posterView.userInteractionEnabled = true
@@ -42,14 +44,12 @@ class MovieCellViewController: UIViewController {
         
         let URL = userDefaults.URLForKey("cell_poster_URL")
         
+        posterView.setImageWithURL(URL!)
         titleLabel.text = (userDefaults.objectForKey("cell_movie_title") as! String)
         overviewLabel.text = (userDefaults.objectForKey("cell_movie_overview") as! String)
-        posterView.setImageWithURL(URL!)
-        
     }
     
-    func imageTapped(img: AnyObject)
-    {
+    func imageTapped(img: AnyObject) {
         performSegueWithIdentifier("posterFullScreen", sender: self)
     }
     
