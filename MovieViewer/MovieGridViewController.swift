@@ -154,11 +154,13 @@ extension MovieGridViewController: UICollectionViewDelegate {
         let title = movie["title"] as! String
         let overview = movie["overview"] as! String
         let posterURL = moviePosterForIndexPath(indexPath)
+        let rating = movie["vote_average"] as! Double
         
         // Store movie information in userDefaults after a user clicks on a movie
         userDefaults.setObject(title, forKey: "cell_movie_title")
         userDefaults.setObject(overview, forKey: "cell_movie_overview")
         userDefaults.setURL(posterURL, forKey: "cell_poster_URL")
+        userDefaults.setDouble(rating, forKey: "cell_rating")
         userDefaults.setInteger(indexPath.row, forKey: "cell_index")
         userDefaults.synchronize()
     }

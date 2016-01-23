@@ -15,6 +15,7 @@ class MovieCellViewController: UIViewController {
     @IBOutlet weak var posterView: UIImageView!
     @IBOutlet weak var overviewLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var ratingLabel: UILabel!
     
     var timesAppeared: Int = 0
     
@@ -37,6 +38,10 @@ class MovieCellViewController: UIViewController {
         
         titleLabel.text = (userDefaults.objectForKey("cell_movie_title") as! String)
         overviewLabel.text = (userDefaults.objectForKey("cell_movie_overview") as! String)
+        
+        let rating = userDefaults.doubleForKey("cell_rating")
+        (rating < 1.0) ? (ratingLabel.text = "Score: Not Rated Yet") :
+                         (ratingLabel.text = "Score: \(rating)/10")
     }
 
     override func didReceiveMemoryWarning() {
