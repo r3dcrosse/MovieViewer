@@ -12,6 +12,8 @@ import MBProgressHUD
 
 class MovieGridViewController: UIViewController {
     
+    let userDefaults = NSUserDefaults.standardUserDefaults()
+    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var networkErrorBackground: UIView!
     @IBOutlet weak var networkErrorTextLabel: UILabel!
@@ -28,11 +30,15 @@ class MovieGridViewController: UIViewController {
         return imageURL!
     }
 
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         collectionView.dataSource = self
+        collectionView.delegate = self
         
         loadDataFromNetwork()
         
@@ -124,10 +130,8 @@ extension MovieGridViewController: UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if let movies = movies {
-            print("movies.count: \(movies.count)")
             return movies.count
         } else {
-            print("movies.count: 0")
             return 0
         }
     }
@@ -139,7 +143,23 @@ extension MovieGridViewController: UICollectionViewDataSource {
         
         cell.posterView.setImageWithURL(cellPosterURL)
         
-        print("row \(indexPath.row)")
         return cell
+    }
+}
+
+extension MovieGridViewController: UICollectionViewDelegate {
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        let movie = movies![indexPath.row]
+        let title = movie["title"] as! String
+        let overview = movie["overview"] as! String
+        let posterURL = moviePosterForIndexPath(indexPath)
+        
+        // Store movie information in userDefaults after a user clicks on a movie
+        userDefaults.setObject(title, forKey: "cell_movie_title")
+        userDefaults.setObject(overview, forKey: "cell_movie_overview")
+        userDefaults.setURL(posterURL, forKey: "cell_poster_URL")
+        userDefaults.setInteger(indexPath.row, forKey: "cell_index")
+        userDefaults.synchronize()
     }
 }

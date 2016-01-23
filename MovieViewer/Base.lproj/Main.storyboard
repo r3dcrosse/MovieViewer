@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
-        <!--Movie Viewer-->
+        <!--Now Playing-->
         <scene sceneID="nf9-by-JKq">
             <objects>
                 <viewController id="EO2-eg-mGE" customClass="MovieGridViewController" customModule="MovieViewer" customModuleProvider="target" sceneMemberID="viewController">
@@ -16,22 +16,23 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="fjO-rf-uya">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="3" minimumInteritemSpacing="3" id="vZ8-JZ-nEY">
-                                    <size key="itemSize" width="101" height="126"/>
+                                    <size key="itemSize" width="100" height="150"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="com.codepath.MoviePosterCell" id="jyd-Tu-U78" customClass="MoviePosterCell" customModule="MovieViewer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="64" width="101" height="126"/>
+                                        <rect key="frame" x="0.0" y="64" width="100" height="150"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="101" height="126"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="JA7-ua-VAE">
-                                                    <rect key="frame" x="0.0" y="0.0" width="101" height="126"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="150"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -39,13 +40,13 @@
                                         </view>
                                         <connections>
                                             <outlet property="posterView" destination="JA7-ua-VAE" id="HRH-iA-JaU"/>
-                                            <segue destination="zf8-Bp-HSu" kind="push" id="C2m-oK-y8Q"/>
+                                            <segue destination="zf8-Bp-HSu" kind="push" id="dm1-Ls-8kR"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
                             <view alpha="0.84999999999999998" contentMode="scaleToFill" id="Bir-ml-H3I">
-                                <rect key="frame" x="0.0" y="20" width="320" height="28"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Network Error" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1Nd-oK-EDe">
@@ -61,7 +62,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Movie Viewer" id="e1e-XJ-TSZ">
+                    <navigationItem key="navigationItem" title="Now Playing" id="e1e-XJ-TSZ">
                         <barButtonItem key="backBarButtonItem" title="Back" id="dzu-Ha-0Ds"/>
                     </navigationItem>
                     <connections>
@@ -81,15 +82,84 @@
                     <view key="view" contentMode="scaleToFill" id="Cda-7L-mIv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="SxJ-dP-Xau">
+                                <rect key="frame" x="178" y="64" width="142" height="214"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.80000000000000004" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overview" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QZt-d0-JW0">
+                                <rect key="frame" x="20" y="286" width="280" height="254"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4Ft-rz-7NZ">
+                                <rect key="frame" x="20" y="72" width="150" height="206"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="TV3-5C-QZi">
                         <barButtonItem key="backBarButtonItem" title="Back" id="1BC-rH-3To"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="overviewLabel" destination="QZt-d0-JW0" id="hZE-gO-cLZ"/>
+                        <outlet property="posterView" destination="SxJ-dP-Xau" id="5so-74-xr4"/>
+                        <outlet property="titleLabel" destination="4Ft-rz-7NZ" id="CWl-PL-WDn"/>
+                        <segue destination="HXz-tm-bdD" kind="modal" identifier="posterFullScreen" id="aBC-EG-weC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i1R-yK-kp3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1753" y="365"/>
+        </scene>
+        <!--Poster Image View Controller-->
+        <scene sceneID="Ede-HE-PWq">
+            <objects>
+                <viewController id="HXz-tm-bdD" customClass="PosterImageViewController" customModule="MovieViewer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NgL-H3-imb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="EDc-da-9Jm">
+                                <rect key="frame" x="0.0" y="88" width="320" height="480"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.80000000000000004" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="6" id="fsN-S9-w9H">
+                                <rect key="frame" x="20" y="35" width="280" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="jbZ-ss-G35" appends="YES" id="7fL-ed-CBF"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" id="EaJ-RG-8e9"/>
+                    <connections>
+                        <outlet property="posterView" destination="EDc-da-9Jm" id="upv-1V-6W7"/>
+                        <outlet property="titleLabel" destination="fsN-S9-w9H" id="Rrd-bE-MbS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ysk-As-SJM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="jbZ-ss-G35">
+                    <connections>
+                        <action selector="onTap:" destination="HXz-tm-bdD" id="Rf0-aK-dh5"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="2157" y="365"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Oef-qH-AYc">
@@ -100,6 +170,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="HXG-ef-OGm">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.80000000000000004" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
