@@ -1,31 +1,29 @@
 //
-//  MovieCellViewController.swift
+//  PosterImageViewController.swift
 //  MovieViewer
 //
-//  Created by David Wayman on 1/21/16.
+//  Created by David Wayman on 1/23/16.
 //  Copyright © 2016 David Wayman. All rights reserved.
 //
 
 import UIKit
 
-class MovieCellViewController: UIViewController {
+class PosterImageViewController: UIViewController {
     
     let userDefaults = NSUserDefaults.standardUserDefaults()
-    
-    @IBOutlet weak var posterView: UIImageView!
-    @IBOutlet weak var overviewLabel: UILabel!
-    @IBOutlet weak var titleLabel: UILabel!
 
+    @IBOutlet weak var posterView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
-        setMovieInfo()
-        
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("imageTapped:"))
         posterView.userInteractionEnabled = true
         posterView.addGestureRecognizer(tapGestureRecognizer)
+        
+        let URL = userDefaults.URLForKey("cell_poster_URL")
+        posterView.setImageWithURL(URL!)
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,26 +31,13 @@ class MovieCellViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func setPosterImage(imageURL: NSURL) {
-        
-        posterView.setImageWithURL(imageURL)
-    }
-    
-    func setMovieInfo() {
-        
-        let URL = userDefaults.URLForKey("cell_poster_URL")
-        
-        titleLabel.text = (userDefaults.objectForKey("cell_movie_title") as! String)
-        overviewLabel.text = (userDefaults.objectForKey("cell_movie_overview") as! String)
-        posterView.setImageWithURL(URL!)
-        
-    }
-    
     func imageTapped(img: AnyObject)
     {
         // Your action
         print("TAPPED")
-        performSegueWithIdentifier("posterFullScreen", sender: self)
+        
+        self.dismissViewControllerAnimated(true, completion: {})
+        
     }
     
 

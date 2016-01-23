@@ -11,6 +11,7 @@
 		81332AFB1C51A3A600AAAE48 /* MovieGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81332AFA1C51A3A600AAAE48 /* MovieGridViewController.swift */; };
 		81332AFD1C51A47500AAAE48 /* MoviePosterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81332AFC1C51A47500AAAE48 /* MoviePosterCell.swift */; };
 		81332B011C51BAED00AAAE48 /* MovieCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81332B001C51BAED00AAAE48 /* MovieCellViewController.swift */; };
+		81332B031C542CC300AAAE48 /* PosterImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81332B021C542CC300AAAE48 /* PosterImageViewController.swift */; };
 		81623CC41C4D60B100E646DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81623CC31C4D60B100E646DE /* AppDelegate.swift */; };
 		81623CC91C4D60B100E646DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81623CC71C4D60B100E646DE /* Main.storyboard */; };
 		81623CCB1C4D60B100E646DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81623CCA1C4D60B100E646DE /* Assets.xcassets */; };
@@ -26,6 +27,7 @@
 		81332AFA1C51A3A600AAAE48 /* MovieGridViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieGridViewController.swift; sourceTree = "<group>"; };
 		81332AFC1C51A47500AAAE48 /* MoviePosterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviePosterCell.swift; sourceTree = "<group>"; };
 		81332B001C51BAED00AAAE48 /* MovieCellViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCellViewController.swift; sourceTree = "<group>"; };
+		81332B021C542CC300AAAE48 /* PosterImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PosterImageViewController.swift; sourceTree = "<group>"; };
 		81623CC01C4D60B100E646DE /* MovieViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81623CC31C4D60B100E646DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81623CC81C4D60B100E646DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 			children = (
 				81332AFA1C51A3A600AAAE48 /* MovieGridViewController.swift */,
 				81332B001C51BAED00AAAE48 /* MovieCellViewController.swift */,
+				81332B021C542CC300AAAE48 /* PosterImageViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 				81332AFB1C51A3A600AAAE48 /* MovieGridViewController.swift in Sources */,
 				81623CC41C4D60B100E646DE /* AppDelegate.swift in Sources */,
 				81332B011C51BAED00AAAE48 /* MovieCellViewController.swift in Sources */,
+				81332B031C542CC300AAAE48 /* PosterImageViewController.swift in Sources */,
 				81332AF91C519A1900AAAE48 /* Reachability.swift in Sources */,
 				81623CD91C4D6E2D00E646DE /* MovieCell.swift in Sources */,
 				81332AFD1C51A47500AAAE48 /* MoviePosterCell.swift in Sources */,
