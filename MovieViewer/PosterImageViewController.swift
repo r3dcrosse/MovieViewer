@@ -13,17 +13,16 @@ class PosterImageViewController: UIViewController {
     let userDefaults = NSUserDefaults.standardUserDefaults()
 
     @IBOutlet weak var posterView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("imageTapped:"))
-        posterView.userInteractionEnabled = true
-        posterView.addGestureRecognizer(tapGestureRecognizer)
         
         let URL = userDefaults.URLForKey("cell_poster_URL")
         posterView.setImageWithURL(URL!)
+        titleLabel.text = (userDefaults.objectForKey("cell_movie_title") as! String)
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,13 +30,8 @@ class PosterImageViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func imageTapped(img: AnyObject)
-    {
-        // Your action
-        print("TAPPED")
-        
+    @IBAction func onTap(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: {})
-        
     }
     
 

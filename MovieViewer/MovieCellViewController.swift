@@ -50,8 +50,6 @@ class MovieCellViewController: UIViewController {
     
     func imageTapped(img: AnyObject)
     {
-        // Your action
-        print("TAPPED")
         performSegueWithIdentifier("posterFullScreen", sender: self)
     }
     
