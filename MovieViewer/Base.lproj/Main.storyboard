@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
-        <!--Movie Viewer-->
+        <!--Now Playing-->
         <scene sceneID="nf9-by-JKq">
             <objects>
                 <viewController id="EO2-eg-mGE" customClass="MovieGridViewController" customModule="MovieViewer" customModuleProvider="target" sceneMemberID="viewController">
@@ -61,7 +61,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Movie Viewer" id="e1e-XJ-TSZ">
+                    <navigationItem key="navigationItem" title="Now Playing" id="e1e-XJ-TSZ">
                         <barButtonItem key="backBarButtonItem" title="Back" id="dzu-Ha-0Ds"/>
                     </navigationItem>
                     <connections>
@@ -81,11 +81,20 @@
                     <view key="view" contentMode="scaleToFill" id="Cda-7L-mIv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="SxJ-dP-Xau">
+                                <rect key="frame" x="0.0" y="66" width="320" height="502"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="TV3-5C-QZi">
                         <barButtonItem key="backBarButtonItem" title="Back" id="1BC-rH-3To"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="posterView" destination="SxJ-dP-Xau" id="5so-74-xr4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i1R-yK-kp3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -28,6 +28,9 @@ class MovieGridViewController: UIViewController {
         return imageURL!
     }
 
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -9,6 +9,8 @@
 import UIKit
 
 class MovieCellViewController: UIViewController {
+    
+    @IBOutlet weak var posterView: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +21,11 @@ class MovieCellViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func setPosterImage(imageURL: NSURL) {
+        
+        posterView.setImageWithURL(imageURL)
     }
     
 
