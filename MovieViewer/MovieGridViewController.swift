@@ -10,28 +10,22 @@ import UIKit
 import AFNetworking
 import MBProgressHUD
 
-class MovieGridViewController: UIViewController {
+class MovieGridViewController: UIViewController, UISearchBarDelegate {
     
     let userDefaults = NSUserDefaults.standardUserDefaults()
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var networkErrorBackground: UIView!
     @IBOutlet weak var networkErrorTextLabel: UILabel!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var movies: [NSDictionary]?
+    var filteredData: [NSDictionary]!
+    var searchActive : Bool = false
     
-    func moviePosterForIndexPath(indexPath: NSIndexPath) -> NSURL {
-        
-        let movie = movies![indexPath.row]
-        let posterPath = movie["poster_path"] as! String
-        let baseURL = "http://image.tmdb.org/t/p/w500"
-        let imageURL = NSURL(string: baseURL + posterPath)
-        
-        return imageURL!
+    override func viewWillAppear(animated: Bool) {
+        self.searchBar.endEditing(true)
     }
-
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +33,7 @@ class MovieGridViewController: UIViewController {
         // Do any additional setup after loading the view.
         collectionView.dataSource = self
         collectionView.delegate = self
+        searchBar.delegate = self
         
         loadDataFromNetwork()
         
@@ -101,10 +96,58 @@ class MovieGridViewController: UIViewController {
         
         // Do the following when the network request comes back successfully:
         // Update tableView data source
-        refreshControl.backgroundColor = UIColor.redColor()
-        refreshControl.tintColor = UIColor.cyanColor()
         self.collectionView.reloadData()
         refreshControl.endRefreshing()
+    }
+    
+    func moviePosterForIndexPath(indexPath: NSIndexPath) -> NSURL {
+        var movie: NSDictionary
+        
+        searchActive ? (movie = filteredData![indexPath.row]) : (movie = movies![indexPath.row])
+        
+        let posterPath = movie["poster_path"] as! String
+        let baseURL = "http://image.tmdb.org/t/p/w500"
+        let imageURL = NSURL(string: baseURL + posterPath)
+        
+        return imageURL!
+    }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        
+                filteredData = movies?.filter({ (movie: NSDictionary) -> Bool in
+                    if let title = movie["title"] as? String {
+                        if title.rangeOfString(searchText, options: .CaseInsensitiveSearch) != nil {
+                            return true
+                        } else {
+                            return false
+                        }
+                    }
+                    return false
+                })
+                
+                if(filteredData.count == 0){
+                    searchActive = false;
+                } else {
+                    searchActive = true;
+                }
+        
+            self.collectionView.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        self.searchBar.endEditing(true)
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        self.searchBar.text = ""
+        searchActive = false
+        self.searchBar.endEditing(true)
+        self.collectionView.reloadData()
+    }
+    
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        self.searchBar.endEditing(true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -129,10 +172,14 @@ class MovieGridViewController: UIViewController {
 extension MovieGridViewController: UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        if let movies = movies {
-            return movies.count
+        if(searchActive) {
+            return filteredData.count
         } else {
-            return 0
+            if let movies = movies {
+                return movies.count
+            } else {
+                return 0
+            }
         }
     }
     
@@ -150,7 +197,10 @@ extension MovieGridViewController: UICollectionViewDataSource {
 extension MovieGridViewController: UICollectionViewDelegate {
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-        let movie = movies![indexPath.row]
+        var movie: NSDictionary
+        
+        searchActive ? (movie = filteredData![indexPath.row]) : (movie = movies![indexPath.row])
+        
         let title = movie["title"] as! String
         let overview = movie["overview"] as! String
         let posterURL = moviePosterForIndexPath(indexPath)
