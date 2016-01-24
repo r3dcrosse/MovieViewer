@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import AFNetworking
 
 class MoviePosterCell: UICollectionViewCell {
     
     @IBOutlet weak var posterView: UIImageView!
+    
     
 }
