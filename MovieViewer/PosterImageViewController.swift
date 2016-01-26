@@ -9,20 +9,25 @@
 import UIKit
 
 class PosterImageViewController: UIViewController {
-    
-    let userDefaults = NSUserDefaults.standardUserDefaults()
 
     @IBOutlet weak var posterView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
+    
+    var movie: NSDictionary!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
-        let URL = userDefaults.URLForKey("cell_poster_URL")
-        posterView.setImageWithURL(URL!)
-        titleLabel.text = (userDefaults.objectForKey("cell_movie_title") as! String)
+        let baseURL = "http://image.tmdb.org/t/p/w500"
+        
+        if let posterPath = movie["poster_path"] as? String {
+            let imageURL = NSURL(string: baseURL + posterPath)
+            posterView.setImageWithURL(imageURL!)
+        }
+        
+        titleLabel.text = movie["title"] as? String
     }
 
     override func didReceiveMemoryWarning() {
