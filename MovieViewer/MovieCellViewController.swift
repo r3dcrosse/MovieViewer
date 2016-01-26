@@ -10,22 +10,12 @@ import UIKit
 
 class MovieCellViewController: UIViewController {
     
-    let userDefaults = NSUserDefaults.standardUserDefaults()
-    
     @IBOutlet weak var posterView: UIImageView!
     @IBOutlet weak var overviewLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
     
-    var timesAppeared: Int = 0
-    
-    override func viewWillAppear(animated: Bool) {
-        setMovieInfo()
-        
-        if timesAppeared <= 0 {
-            blurBackground()
-        }
-    }
+    var movie: NSDictionary!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,12 +26,19 @@ class MovieCellViewController: UIViewController {
         posterView.userInteractionEnabled = true
         posterView.addGestureRecognizer(tapGestureRecognizer)
         
-        titleLabel.text = (userDefaults.objectForKey("cell_movie_title") as! String)
-        overviewLabel.text = (userDefaults.objectForKey("cell_movie_overview") as! String)
+        titleLabel.text = movie["title"] as? String
+        overviewLabel.text = movie["overview"] as? String
         
-        let rating = userDefaults.doubleForKey("cell_rating")
+        let rating = movie["vote_average"] as! Double
         (rating < 1.0) ? (ratingLabel.text = "Score: Not Rated Yet") :
                          (ratingLabel.text = "Score: \(rating)/10")
+        
+        let baseURL = "http://image.tmdb.org/t/p/w500"
+        
+        if let posterPath = movie["poster_path"] as? String {
+            let imageURL = NSURL(string: baseURL + posterPath)
+            posterView.setImageWithURL(imageURL!)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,34 +46,9 @@ class MovieCellViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func setPosterImage(imageURL: NSURL) {
-        
-        posterView.setImageWithURL(imageURL)
-    }
-    
-    func setMovieInfo() {
-        
-        let URL = userDefaults.URLForKey("cell_poster_URL")
-        
-        posterView.setImageWithURL(URL!)
-        
-        
-    }
-    
     func imageTapped(img: AnyObject) {
         performSegueWithIdentifier("posterFullScreen", sender: self)
     }
-    
-    func blurBackground() {
-        // blur poster image for nice background
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = posterView.bounds
-        posterView.addSubview(blurEffectView)
-        
-        timesAppeared++
-    }
-    
 
     /*
     // MARK: - Navigation
