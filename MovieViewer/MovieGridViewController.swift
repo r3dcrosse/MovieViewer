@@ -12,8 +12,6 @@ import MBProgressHUD
 
 class MovieGridViewController: UIViewController, UISearchBarDelegate {
     
-    let userDefaults = NSUserDefaults.standardUserDefaults()
-    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var networkErrorBackground: UIView!
     @IBOutlet weak var networkErrorTextLabel: UILabel!
@@ -100,18 +98,6 @@ class MovieGridViewController: UIViewController, UISearchBarDelegate {
         refreshControl.endRefreshing()
     }
     
-    func moviePosterForIndexPath(indexPath: NSIndexPath) -> NSURL {
-        var movie: NSDictionary
-        
-        searchActive ? (movie = filteredData![indexPath.row]) : (movie = movies![indexPath.row])
-        
-        let posterPath = movie["poster_path"] as! String
-        let baseURL = "http://image.tmdb.org/t/p/w500"
-        let imageURL = NSURL(string: baseURL + posterPath)
-        
-        return imageURL!
-    }
-    
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         
                 filteredData = movies?.filter({ (movie: NSDictionary) -> Bool in
@@ -157,15 +143,22 @@ class MovieGridViewController: UIViewController, UISearchBarDelegate {
     
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let cell = sender as! UICollectionViewCell
+        let indexPath = collectionView.indexPathForCell(cell)
+        var movie: NSDictionary
+        
+        searchActive ? (movie = filteredData![indexPath!.row]) : (movie = movies![indexPath!.row])
+        
+        let movieCellViewController = segue.destinationViewController as! MovieCellViewController
+        movieCellViewController.movie = movie
+        
     }
-    */
+    
 
 }
 
@@ -173,8 +166,10 @@ extension MovieGridViewController: UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if(searchActive) {
+            print("SEARCH IS ACTIVE")
             return filteredData.count
         } else {
+            print("SEARCH IS NOT ACTIVE")
             if let movies = movies {
                 return movies.count
             } else {
@@ -184,11 +179,18 @@ extension MovieGridViewController: UICollectionViewDataSource {
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        var movie: NSDictionary
+        
+        searchActive ? (movie = filteredData![indexPath.row]) : (movie = movies![indexPath.row])
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("com.codepath.MoviePosterCell", forIndexPath: indexPath) as! MoviePosterCell
-        let cellPosterURL = moviePosterForIndexPath(indexPath)
         
-        cell.posterView.setImageWithURL(cellPosterURL)
+        let baseURL = "http://image.tmdb.org/t/p/w500"
+        
+        if let posterPath = movie["poster_path"] as? String {
+            let imageURL = NSURL(string: baseURL + posterPath)
+            cell.posterView.setImageWithURL(imageURL!)
+        }
         
         return cell
     }
@@ -201,17 +203,5 @@ extension MovieGridViewController: UICollectionViewDelegate {
         
         searchActive ? (movie = filteredData![indexPath.row]) : (movie = movies![indexPath.row])
         
-        let title = movie["title"] as! String
-        let overview = movie["overview"] as! String
-        let posterURL = moviePosterForIndexPath(indexPath)
-        let rating = movie["vote_average"] as! Double
-        
-        // Store movie information in userDefaults after a user clicks on a movie
-        userDefaults.setObject(title, forKey: "cell_movie_title")
-        userDefaults.setObject(overview, forKey: "cell_movie_overview")
-        userDefaults.setURL(posterURL, forKey: "cell_poster_URL")
-        userDefaults.setDouble(rating, forKey: "cell_rating")
-        userDefaults.setInteger(indexPath.row, forKey: "cell_index")
-        userDefaults.synchronize()
     }
 }
