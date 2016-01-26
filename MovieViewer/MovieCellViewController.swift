@@ -29,11 +29,15 @@ class MovieCellViewController: UIViewController {
         posterView.addGestureRecognizer(tapGestureRecognizer)
         
         titleLabel.text = movie["title"] as? String
+        titleLabel.sizeToFit()
+        
         overviewLabel.text = movie["overview"] as? String
+        overviewLabel.sizeToFit()
         
         let rating = movie["vote_average"] as! Double
         (rating < 1.0) ? (ratingLabel.text = "Score: Not Rated Yet") :
                          (ratingLabel.text = "Score: \(rating)/10")
+        ratingLabel.sizeToFit()
         
         let baseURL = "http://image.tmdb.org/t/p/w500"
         
