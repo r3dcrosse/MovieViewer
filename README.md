@@ -85,7 +85,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-![Tip Calculator Demo](Screenshots/MovieViewer_v1.gif)
+![Tip Calculator Demo](Screenshots/MovieViewer_v2.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
