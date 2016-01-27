@@ -19,7 +19,8 @@ class MovieGridViewController: UIViewController, UISearchBarDelegate {
     
     var movies: [NSDictionary]?
     var filteredData: [NSDictionary]!
-    var searchActive : Bool = false
+    var searchActive: Bool = false
+    var endpoint: String!
     
     override func viewWillAppear(animated: Bool) {
         self.searchBar.endEditing(true)
@@ -62,7 +63,7 @@ class MovieGridViewController: UIViewController, UISearchBarDelegate {
         
         // ...
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-        let url = NSURL(string:"https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
+        let url = NSURL(string:"https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)")
         let request = NSURLRequest(URL: url!)
         let session = NSURLSession(
             configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
