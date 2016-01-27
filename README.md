@@ -57,14 +57,14 @@ Describe any challenges encountered while building the app.
 
 MovieViewer is a movies app displaying box office and top rental DVDs using [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
-Time spent: 1 hours spent in total
+Time spent: 3 hours spent in total
 
 ## User Stories
 
 The following **required** functionality is completed:
 
 - [x] User can view movie details by tapping on a cell.
-- [ ] User can select from a tab bar for either **Now Playing** or **Top Rated** movies.
+- [x] User can select from a tab bar for either **Now Playing** or **Top Rated** movies.
 - [ ] Customize the selection effect of the cell.
 
 The following **optional** features are implemented:
@@ -85,7 +85,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-![Tip Calculator Demo](Screenshots/MovieViewer_v2.gif)
+![Tip Calculator Demo](Screenshots/MovieViewer_v3.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
