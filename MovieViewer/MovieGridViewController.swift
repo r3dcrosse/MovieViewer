@@ -157,10 +157,7 @@ class MovieGridViewController: UIViewController, UISearchBarDelegate {
         
         let movieCellViewController = segue.destinationViewController as! MovieCellViewController
         movieCellViewController.movie = movie
-        
     }
-    
-
 }
 
 extension MovieGridViewController: UICollectionViewDataSource {
@@ -242,5 +239,15 @@ extension MovieGridViewController: UICollectionViewDelegate {
         
         searchActive ? (movie = filteredData![indexPath.row]) : (movie = movies![indexPath.row])
         
+        let cell = collectionView.cellForItemAtIndexPath(indexPath)
+        if cell!.selected {
+            cell!.layer.borderWidth = 2.0
+            cell!.layer.borderColor = UIColor.whiteColor().CGColor
+            print("SETTING CELL BORDER COLOR")
+        } else {
+            cell!.layer.borderWidth = 2.0
+            cell!.layer.borderColor = UIColor.blueColor().CGColor
+            print("GOT HERE")
+        }
     }
 }
