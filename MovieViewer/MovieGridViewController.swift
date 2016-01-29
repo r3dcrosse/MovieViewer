@@ -186,11 +186,49 @@ extension MovieGridViewController: UICollectionViewDataSource {
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("com.codepath.MoviePosterCell", forIndexPath: indexPath) as! MoviePosterCell
         
-        let baseURL = "http://image.tmdb.org/t/p/w500"
+        let smallImageBaseURL = "http://image.tmdb.org/t/p/w92"
+        let largeImageBaseURL = "http://image.tmdb.org/t/p/w500"
         
         if let posterPath = movie["poster_path"] as? String {
-            let imageURL = NSURL(string: baseURL + posterPath)
-            cell.posterView.setImageWithURL(imageURL!)
+            let smallImageRequest = NSURLRequest(URL: NSURL(string: smallImageBaseURL + posterPath)!)
+            let largeImageRequest = NSURLRequest(URL: NSURL(string: largeImageBaseURL + posterPath)!)
+            
+            cell.posterView.setImageWithURLRequest(
+                smallImageRequest,
+                placeholderImage: nil,
+                success: { (smallImageRequest, smallImageResponse, smallImage) -> Void in
+                    
+                    // smallImageResponse will be nil if the smallImage is already available
+                    // in cache (might want to do something smarter in that case).
+                    cell.posterView.alpha = 0.0
+                    cell.posterView.image = smallImage;
+                    
+                    UIView.animateWithDuration(0.3, animations: { () -> Void in
+                        
+                        cell.posterView.alpha = 1.0
+                        
+                        }, completion: { (sucess) -> Void in
+                            
+                            // The AFNetworking ImageView Category only allows one request to be sent at a time
+                            // per ImageView. This code must be in the completion block.
+                            cell.posterView.setImageWithURLRequest(
+                                largeImageRequest,
+                                placeholderImage: smallImage,
+                                success: { (largeImageRequest, largeImageResponse, largeImage) -> Void in
+                                    
+                                    cell.posterView.image = largeImage;
+                                    
+                                },
+                                failure: { (request, response, error) -> Void in
+                                    // do something for the failure condition of the large image request
+                                    // possibly setting the ImageView's image to a default image
+                            })
+                    })
+                },
+                failure: { (request, response, error) -> Void in
+                    // do something for the failure condition
+                    // possibly try to get the large image
+            })
         }
         
         return cell
