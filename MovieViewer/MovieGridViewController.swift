@@ -22,6 +22,9 @@ class MovieGridViewController: UIViewController, UISearchBarDelegate {
     var searchActive: Bool = false
     var endpoint: String!
     
+    // Declare user defaults
+    let userDefaults = NSUserDefaults.standardUserDefaults()
+    
     override func viewWillAppear(animated: Bool) {
         self.searchBar.endEditing(true)
     }
@@ -237,17 +240,27 @@ extension MovieGridViewController: UICollectionViewDelegate {
         
         var movie: NSDictionary
         
+        let cell = collectionView.cellForItemAtIndexPath(indexPath)
+        // print(previousCell)
+        
         searchActive ? (movie = filteredData![indexPath.row]) : (movie = movies![indexPath.row])
         
-        let cell = collectionView.cellForItemAtIndexPath(indexPath)
-        if cell!.selected {
+        if (cell!.selected) /* && more logic here */ {
             cell!.layer.borderWidth = 2.0
             cell!.layer.borderColor = UIColor.whiteColor().CGColor
-            print("SETTING CELL BORDER COLOR")
+            print("SETTING CELL \(indexPath.row) WHITE BORDER COLOR")
+            
+            // USER NSUserDefaults to store indexpath.row to keep track of the previous cell
+            // set properties of the previous cell.
+            
         } else {
             cell!.layer.borderWidth = 2.0
             cell!.layer.borderColor = UIColor.blueColor().CGColor
+            print("SETTING CELL \(indexPath.row) BLUE BORDER COLOR")
+            
             print("GOT HERE")
         }
+        
+        print("----------------------------------")
     }
 }
