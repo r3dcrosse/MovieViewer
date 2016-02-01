@@ -16,16 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        let userDefaults = NSUserDefaults.standardUserDefaults()
-        let isNotFirstLoad = userDefaults.boolForKey("is_not_first_load")
-        
-        // If finished launching with options:
-        if (!isNotFirstLoad) {
-            userDefaults.setInteger(0, forKey:  "cell_selected")
-            userDefaults.setBool(true, forKey:  "is_not_first_load")
-            userDefaults.synchronize()
-        }
-        
         // Override point for customization after application launch.
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
