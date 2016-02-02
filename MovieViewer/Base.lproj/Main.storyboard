@@ -105,17 +105,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="yca-9a-qpv">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="SxJ-dP-Xau">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="569"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.80000000000000004" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="yca-9a-qpv">
+                                <rect key="frame" x="0.0" y="62" width="320" height="507"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="SxJ-dP-Xau">
-                                        <rect key="frame" x="-22" y="0.0" width="363" height="569"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.80000000000000004" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                    </imageView>
                                     <view alpha="0.80000000000000004" contentMode="scaleToFill" id="tXx-sW-XLh">
-                                        <rect key="frame" x="0.0" y="569" width="320" height="406"/>
+                                        <rect key="frame" x="0.0" y="300" width="320" height="406"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rating" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="5" id="XSa-rh-Kyw">
@@ -125,7 +125,7 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" id="4Ft-rz-7NZ">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="6" id="4Ft-rz-7NZ">
                                                 <rect key="frame" x="8" y="8" width="206" height="27"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
@@ -133,7 +133,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overview" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QZt-d0-JW0">
-                                                <rect key="frame" x="8" y="63" width="304" height="21"/>
+                                                <rect key="frame" x="8" y="77" width="304" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -157,7 +157,7 @@
                         <outlet property="ratingLabel" destination="XSa-rh-Kyw" id="YgO-So-qPb"/>
                         <outlet property="scrollView" destination="yca-9a-qpv" id="qYy-o6-xrP"/>
                         <outlet property="titleLabel" destination="4Ft-rz-7NZ" id="CWl-PL-WDn"/>
-                        <segue destination="HXz-tm-bdD" kind="modal" identifier="posterFullScreen" id="aBC-EG-weC"/>
+                        <segue destination="HXz-tm-bdD" kind="modal" identifier="posterFullScreen" modalTransitionStyle="crossDissolve" id="A7B-9z-1kM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i1R-yK-kp3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -185,7 +185,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="0.3827323628" blue="0.37582153280000002" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="jbZ-ss-G35" appends="YES" id="7fL-ed-CBF"/>
