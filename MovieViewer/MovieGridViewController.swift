@@ -21,6 +21,7 @@ class MovieGridViewController: UIViewController, UISearchBarDelegate {
     var filteredData: [NSDictionary]!
     var searchActive: Bool = false
     var endpoint: String!
+    var indexPaths: [NSIndexPath] = []
     
     // Declare user defaults
     let userDefaults = NSUserDefaults.standardUserDefaults()
@@ -246,12 +247,21 @@ extension MovieGridViewController: UICollectionViewDelegate {
         
         searchActive ? (movie = filteredData![indexPath.row]) : (movie = movies![indexPath.row])
         
-        if (cell!.selected) {
-            cell!.layer.borderWidth = 2.0
-            cell!.layer.borderColor = UIColor.whiteColor().CGColor
-            print("SETTING CELL \(indexPath.row) WHITE BORDER COLOR")
+        if cell!.selected {
+            
+            // if never clicked before, set border width
+            if !(indexPaths.contains(indexPath)) {
+                // Reload old cells to remove border and reset the array of selected cells
+                collectionView.reloadItemsAtIndexPaths(indexPaths)
+                indexPaths.removeAll()
+                
+                // Set selected cell border
+                cell!.layer.borderWidth = 2.0
+                cell!.layer.borderColor = UIColor.whiteColor().CGColor
+                
+                indexPaths.append(indexPath) // Cell was just clicked, add to array of indexPaths
+            }
         }
         
-        print("----------------------------------")
     }
 }

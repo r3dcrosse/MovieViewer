@@ -31,7 +31,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="104" height="157"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="JA7-ua-VAE">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" highlighted="YES" id="JA7-ua-VAE">
                                                     <rect key="frame" x="0.0" y="0.0" width="105" height="158"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -40,6 +40,7 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <color key="tintColor" red="0.80000000000000004" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="posterView" destination="JA7-ua-VAE" id="HRH-iA-JaU"/>
                                             <segue destination="zf8-Bp-HSu" kind="push" id="dm1-Ls-8kR"/>
